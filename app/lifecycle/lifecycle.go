@@ -80,7 +80,9 @@ func Run() {
 		}
 	}
 
-	StartBackgroundUpdaterChecker(ctx, t.UpdateAvailable)
+	if os.Getenv("OLLAMA_NO_UPDATER") != "true" {
+		StartBackgroundUpdaterChecker(ctx, t.UpdateAvailable)
+	}
 
 	t.Run()
 	cancel()
